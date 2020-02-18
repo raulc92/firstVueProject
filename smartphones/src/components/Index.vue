@@ -15,22 +15,33 @@
 </template>
 
 <script>
+import db from '@/firebase/init'
+
 export default {
   name: 'Index',
   data () {
     return {
-     devices: [
-       {phone: 'Xiaomi Mi 9', slug: 'xiaomi-mi-9', specs: ['snapdragon 855', 'amoled', '48Mpx'], id: '1'},
-       {phone: 'Samsung Galaxy S10 Plus', slug: 'samsung-galaxy-s10-plus', specs: ['exynos 9820', 'amoled', '12Mpx'], id: '2'}
-     ]
+      devices: []
     }
   },
   methods: {
     deleteDevice(id){
-      this.devices= this.devices.filter(device => {
+     db.collection('devices').doc(id).delete()
+     .then(() =>{
+       this.devices= this.devices.filter(device => {
         return device.id != id
+     })
+    })
+  }},
+  created(){
+    db.collection('devices').get()
+    .then(snapshot =>{
+      snapshot.forEach(doc =>{
+         let device = doc.data()
+         device.id = doc.id
+         this.devices.push(device)
       })
-    }
+    })
   }
 }
 </script>
