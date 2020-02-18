@@ -17,7 +17,6 @@
             <div class="field center-align">
                 <button class="btn pink">Add Device</button>
             </div>
-
         </form>
     </div> 
 </template>
