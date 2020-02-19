@@ -15,7 +15,7 @@
                 <input type="text" name="camera" v-model="camera">
             </div>
             <div class="field center-align">
-                <button class="btn pink">Add Device</button>
+                <button class="btn green accent-3">Add Device</button>
             </div>
         </form>
     </div> 
